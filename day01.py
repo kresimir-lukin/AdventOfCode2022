@@ -1,19 +1,15 @@
 import sys
 
-def max3_calories(calories):
-    max1 = max2 = max3 = current = 0
-    for calorie in calories + []:
-        if not calorie:
-            if current >= max1:
-                max1, max2, max3 = current, max1, max2
-            elif current >= max2:
-                max2, max3 = current, max2
-            elif current >= max3:
-                max3 = current
-        current = current + int(calorie) if calorie else 0
-    return max1, max2, max3
+calories = sys.stdin.read().splitlines()
+elf_calories = [0]
+for calorie in calories:
+    if calorie:
+        elf_calories[-1] += int(calorie)
+    else:
+        elf_calories.append(0)
+elf_calories.sort()
 
-assert len(sys.argv) == 2
-calories = open(sys.argv[1]).read().splitlines()
+part1 = elf_calories[-1]
+part2 = sum(elf_calories[-3:])
 
-print(f'Part 1: {max3_calories(calories)[0]}, Part 2: {sum(max3_calories(calories))}')
+print(f'Part 1: {part1}, Part 2: {part2}')
