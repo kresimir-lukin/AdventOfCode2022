@@ -1,14 +1,17 @@
 import sys
 
-calories = sys.stdin.read().splitlines()
-elf_calories = [0]
-for calorie in calories:
-    if calorie:
-        elf_calories[-1] += int(calorie)
-    else:
-        elf_calories.append(0)
-elf_calories.sort()
+def get_sorted_elf_calories(calories):
+    elf_calories = [0]
+    for calorie in calories:
+        if not calorie:
+            elf_calories.append(0)
+        elf_calories[-1] += int(calorie) if calorie else 0
+    elf_calories.sort()
+    return elf_calories
 
+calories = sys.stdin.read().splitlines()
+
+elf_calories = get_sorted_elf_calories(calories)
 part1 = elf_calories[-1]
 part2 = sum(elf_calories[-3:])
 
