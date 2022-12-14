@@ -32,7 +32,7 @@ def get_next_sand_position(rocks, sand, floor):
     return x, y
 
 def fill_sand(rocks, floor, target_y):
-    sand, floor = set(),  + floor
+    sand = set()
     position = get_next_sand_position(rocks, sand, floor)
     while position[1] != target_y:
         sand.add(position)
